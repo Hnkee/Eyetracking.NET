@@ -1,6 +1,6 @@
 # Eye Tracking .NET #
 
-![build status](https://danielsa.visualstudio.com/Eyetracking.NET/_apis/build/status/Eyetracking.NET-CI)
+![build status](https://hnkee.visualstudio.com/Eyetracking.NET/_apis/build/status/Eyetracking.NET-CI)
 
 ### What is this repository for? ###
 
