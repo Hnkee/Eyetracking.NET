@@ -1,0 +1,13 @@
+Change from streamengine.net to native:
+	Create interops only for the functions that are needed
+
+Add headtracking?
+	Separate class? Separate lib?
+
+Singelton tracker:
+	Eyetracker can read from static/singelton fields so all instances read from same place.
+	we need some ref-counter to dispose the singelton when last instance is destroyed.  
+
+Testproject:
+	If headtracking / singelton / etc might be time to add tests?
+
