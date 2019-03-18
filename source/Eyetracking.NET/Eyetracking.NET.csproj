@@ -78,7 +78,7 @@
     <None Include="Tobii\SDK-License_zh.pdf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sample.txt">
+    <Content Include="readme-after-installation.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
