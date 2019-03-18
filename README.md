@@ -15,3 +15,19 @@ Use nuget package Eyetracking.NET
 ### Who do I talk to? ###
 
 The hand
+
+### Sample ####
+
+```
+class Program
+{
+    static void Main(string[] args)
+    {
+        var eyetracker = Eyetracking.NET.Eyetracker.Desktop;
+        while (!Console.KeyAvailable)
+        {
+            Console.WriteLine($"{eyetracker.X} , {eyetracker.Y}");
+        }
+    }
+}
+```
