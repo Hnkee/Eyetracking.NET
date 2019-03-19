@@ -91,7 +91,7 @@ class Build : NukeBuild
                 .ForEach(DeleteFile);
 
             BuildDirectory.GlobFiles("*.dll")
-                .ForEach(f => MoveFileToDirectory(f, BuildDirectory / "lib" / "net45"));
+                .ForEach(f => MoveFileToDirectory(f, BuildDirectory / "lib" / "net35"));
 
             // A file named readme will show up after installation
             // see: https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#creating-the-nuspec-file
