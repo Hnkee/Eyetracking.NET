@@ -8,7 +8,7 @@ Minimal .NET wrapper for eyetracking
 
 ### How do I get set up? ###
 
-Use nuget package Eyetracking.NET
+Use nuget package [Eyetracking.NET](https://www.nuget.org/packages/Eyetracking.NET/)
 
 ### Contribution guidelines ###
 
@@ -16,7 +16,7 @@ Use nuget package Eyetracking.NET
 
 The hand
 
-### Sample ####
+### Sample ###
 
 ```
 class Program
