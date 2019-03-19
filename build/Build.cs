@@ -93,6 +93,10 @@ class Build : NukeBuild
             BuildDirectory.GlobFiles("*.dll")
                 .ForEach(f => MoveFileToDirectory(f, BuildDirectory / "lib" / "net45"));
 
+            // A file named readme will show up after installation
+            // see: https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#creating-the-nuspec-file
+            RenameFile(BuildDirectory / "readme-after-installation.txt", BuildDirectory / "readme.txt");
+
             var specPath = LibraryProject.Path.ToString().Replace(".csproj", ".nuspec");
             NuGetTasks.NuGetPack(new NuGetPackSettings()
                 .DisableBuild()
