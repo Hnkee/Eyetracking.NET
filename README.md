@@ -14,8 +14,6 @@ Knowing what the user is looking at, normalized coordinates on the screen (direc
 
 Use nuget package Eyetracking.NET
 
-### Contribution guidelines ###
-
 ### Who do I talk to? ###
 
 The hand
