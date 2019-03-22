@@ -1,10 +1,14 @@
-# Eye Tracking .NET #
+# Eyetracking .NET #
 
 ![build status](https://hnkee.visualstudio.com/Eyetracking.NET/_apis/build/status/Eyetracking.NET-CI)
 
 ### What is this repository for? ###
 
 Minimal .NET wrapper for eyetracking
+
+### What is eyetracking? ###
+
+Knowing what the user is looking at, normalized coordinates on the screen (direction in VR)
 
 ### How do I get set up? ###
 
