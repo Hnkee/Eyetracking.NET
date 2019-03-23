@@ -1,6 +1,8 @@
 # Eyetracking .NET #
 
-![build status](https://hnkee.visualstudio.com/Eyetracking.NET/_apis/build/status/Eyetracking.NET-CI)
+[![](https://hnkee.visualstudio.com/Eyetracking.NET/_apis/build/status/Eyetracking.NET-CI)](#)
+
+[![Nuget](https://img.shields.io/nuget/v/Eyetracking.NET.svg)](https://www.nuget.org/packages/Eyetracking.NET/)
 
 ### What is this repository for? ###
 
@@ -20,12 +22,14 @@ The hand
 
 ### Sample ###
 
-```
+```C#
+using Eyetracking.NET;
+
 class Program
 {
     static void Main(string[] args)
     {
-        var eyetracker = Eyetracking.NET.Eyetracker.Desktop;
+        var eyetracker = Eyetracker.Desktop;
         while (!Console.KeyAvailable)
         {
             Console.WriteLine($"{eyetracker.X} , {eyetracker.Y}");
