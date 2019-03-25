@@ -6,14 +6,15 @@
     <title>Eyetracking.NET</title>
     <authors>Hnkee, Dansav</authors>
     <owners>Hnkee, Dansav</owners>
+	<projectUrl>https://github.com/Hnkee/Eyetracking.NET</projectUrl>
+    <repository type="git" url="https://github.com/Hnkee/Eyetracking.NET"/>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Minimal eyetracking wrapper for .NET</description>
     <releaseNotes> - </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Eyetracking</tags>
-	<dependencies>
-        <dependency id="Tobii.StreamEngine" version="2.2.2.363" />
+    <dependencies>
+      <dependency id="Tobii.StreamEngine" version="2.2.2.363" />
     </dependencies>
- 
   </metadata>
 </package>

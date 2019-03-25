@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.cspr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{AD178E61-6256-4625-AC5C-D0692CDBE0E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Misc", ".Misc", "{0F4C2956-6F2E-4127-B1EC-69AF512543DE}"
+	ProjectSection(SolutionItems) = preProject
+		source\Eyetracking.NET\Eyetracking.NET.nuspec = source\Eyetracking.NET\Eyetracking.NET.nuspec
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
