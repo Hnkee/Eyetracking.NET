@@ -61,8 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CannotCreateEyetrackerException.cs" />
     <Compile Include="Eyetracker.cs" />
+    <Compile Include="EyetrackerFactory.cs" />
+    <Compile Include="EyetrackerVR.cs" />
     <Compile Include="IEyetracker.cs" />
+    <Compile Include="IEyetrackerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tobii\DeviceContext.cs" />
     <Compile Include="Tobii\Tobii.StreamEngine.Interop.cs" />

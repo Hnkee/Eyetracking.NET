@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Misc", ".Misc", "{0F4C2956
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D8B0445F-312C-4804-9DC9-5CD4A240DF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eyetracking.NET.Tests", "Eyetracking.NET.Tests\Eyetracking.NET.Tests.csproj", "{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{7CFF19D9-62CE-4A66-A2F8-0BAD10ABFD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CFF19D9-62CE-4A66-A2F8-0BAD10ABFD72}.Release|x64.ActiveCfg = Release|Any CPU
 		{7CFF19D9-62CE-4A66-A2F8-0BAD10ABFD72}.Release|x64.Build.0 = Release|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Debug|x64.Build.0 = Debug|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Release|x64.ActiveCfg = Release|Any CPU
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +68,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6C242E11-AC6A-4DCF-BC2B-4E8A6D3DDE9F} = {A4AB50C1-CAED-4E4F-87BC-2F501230BFC0}
 		{7CFF19D9-62CE-4A66-A2F8-0BAD10ABFD72} = {AD178E61-6256-4625-AC5C-D0692CDBE0E1}
+		{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903} = {D8B0445F-312C-4804-9DC9-5CD4A240DF0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {602D9907-7AA2-4BFD-93EF-F7D3700914BD}

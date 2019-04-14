@@ -1,4 +1,4 @@
-﻿using Eyetracking.NET.Tobii;
+using Eyetracking.NET.Tobii;
 using Tobii.StreamEngine;
 
 namespace Eyetracking.NET
@@ -12,7 +12,7 @@ namespace Eyetracking.NET
         public float X { get; private set; }
 
         public float Y { get; private set; }
-
+        
         public float Z { get; private set; }
 
         protected override void WearableCallback(ref tobii_wearable_data_t data)
@@ -24,6 +24,34 @@ namespace Eyetracking.NET
                 Y = gaze.y;
                 Z = gaze.z;
             }
+        }
+    }
+
+    public class TobiiEyetrackerFactory : IEyetrackerFactory
+    {
+        private static ApiContext _api;
+        private static IEyetracker _desktop;
+        private static IEyetrackerVr _vr;
+        private static IEyetracker Desktop => _desktop ?? (_desktop = new TobiiDesktopTracker(_api));
+        private static IEyetrackerVr VR => _vr ?? (_vr = new TobiiVrTracker(_api));
+
+        static TobiiEyetrackerFactory()
+        {
+            _api = new ApiContext();
+        }
+
+        //TODO:
+        public bool CanCreateEyetracker { get; } = true;
+        public bool CanCreateEyetrackerVR { get; } = true;
+
+        public IEyetracker Create()
+        {
+            return Desktop;
+        }
+
+        public IEyetrackerVr CreateVR()
+        {
+            return VR;
         }
     }
 }
