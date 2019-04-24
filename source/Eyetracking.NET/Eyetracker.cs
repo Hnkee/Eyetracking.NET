@@ -1,32 +1,16 @@
-﻿using Eyetracking.NET.Tobii;
-
 namespace Eyetracking.NET
 {
-    public class Eyetracker 
+    public class Eyetracker : IEyetracker
     {
-        private static ApiContext _api;
-        private static IEyetracker _desktop;
-        private static IEyetrackerVr _vr;
+        private IEyetracker _eyetracker;
 
-        static Eyetracker()
-        {
-            _api = new ApiContext();
-        }
+        public float X => _eyetracker.X;
+        public float Y => _eyetracker.Y;
 
-        public static IEyetracker Desktop
+        public Eyetracker()
         {
-            get
-            {
-                return _desktop ?? (_desktop = new TobiiDesktopTracker(_api));
-            }
-        }
-
-        public static IEyetrackerVr VR
-        {
-            get
-            {
-                return _vr ?? (_vr = new TobiiVrTracker(_api));
-            }
+            if (!EyetrackerFactory.Default.CanCreateEyetracker) throw new CannotCreateEyetrackerException();
+            _eyetracker = EyetrackerFactory.Default.Create();
         }
     }
 }
