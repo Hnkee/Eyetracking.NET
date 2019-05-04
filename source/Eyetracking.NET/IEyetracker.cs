@@ -31,4 +31,20 @@ namespace Eyetracking.NET
         /// </summary>
         float Z { get; }
     }
+
+
+    public interface IEyePositionTracker
+    {
+        float LeftX { get; }
+
+        float LeftY { get; }
+
+        float LeftZ { get; }
+
+        float RightX { get; }
+
+        float RightY { get; }
+
+        float RightZ { get; }
+    }
 }

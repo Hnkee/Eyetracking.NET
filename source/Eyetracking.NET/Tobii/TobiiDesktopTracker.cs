@@ -3,7 +3,7 @@ using Tobii.StreamEngine;
 
 namespace Eyetracking.NET
 {
-    internal sealed class TobiiDesktopTracker : TobiiTrackerBase, IEyetracker
+    internal class TobiiDesktopTracker : TobiiTrackerBase, IEyetracker
     {
         internal TobiiDesktopTracker(ApiContext api) : base(api, false)
         {

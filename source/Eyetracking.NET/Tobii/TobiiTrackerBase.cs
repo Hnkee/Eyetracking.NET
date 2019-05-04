@@ -14,8 +14,9 @@ namespace Eyetracking.NET.Tobii
         private bool _continue = true;
         private tobii_wearable_data_callback_t _wearableCallbackInstance;
         private tobii_gaze_point_callback_t _gazePointCallbackInstance;
+        private tobii_gaze_origin_callback_t _gazeOriginCallbackInstance;
 
-        internal TobiiTrackerBase(ApiContext api, bool isWearable)
+        internal TobiiTrackerBase(ApiContext api, bool isWearable, bool gazeOrigin = false)
         {
             _device = api
                 .GetDeviceUrls()
@@ -33,13 +34,22 @@ namespace Eyetracking.NET.Tobii
                         result = Interop.tobii_wearable_data_subscribe(_device.Handle, _wearableCallbackInstance);
                     }
                 }
-                else
+                else if(!gazeOrigin)
                 {
                     var result = Interop.tobii_stream_supported(_device.Handle, tobii_stream_t.TOBII_STREAM_GAZE_POINT, out var gazePointSupported);
                     if (result == tobii_error_t.TOBII_ERROR_NO_ERROR && gazePointSupported)
                     {
                         _gazePointCallbackInstance = GazePointCallback;
                         result = Interop.tobii_gaze_point_subscribe(_device.Handle, _gazePointCallbackInstance);
+                    }
+                }
+                else
+                {
+                    var result = Interop.tobii_stream_supported(_device.Handle, tobii_stream_t.TOBII_STREAM_GAZE_ORIGIN, out var gazeOriginSupported);
+                    if (result == tobii_error_t.TOBII_ERROR_NO_ERROR && gazeOriginSupported)
+                    {
+                        _gazeOriginCallbackInstance = GazeOriginCallback;
+                        result = Interop.tobii_gaze_origin_subscribe(_device.Handle, _gazeOriginCallbackInstance);
                     }
                 }
 
@@ -55,15 +65,19 @@ namespace Eyetracking.NET.Tobii
             _continue = false;
             if (_gazePointCallbackInstance != null) Interop.tobii_gaze_point_unsubscribe(_device.Handle);
             if (_wearableCallbackInstance != null) Interop.tobii_wearable_data_unsubscribe(_device.Handle);
+            if (_gazeOriginCallbackInstance != null) Interop.tobii_gaze_origin_unsubscribe(_device.Handle);
             _device.Dispose();
             _thread.Join(300);
             _gazePointCallbackInstance = null;
             _wearableCallbackInstance = null;
+            _gazeOriginCallbackInstance = null;
         }
 
         protected virtual void GazePointCallback(ref tobii_gaze_point_t gaze_point) { }
 
         protected virtual void WearableCallback(ref tobii_wearable_data_t data) { }
+
+        protected virtual void GazeOriginCallback(ref tobii_gaze_origin_t data) { }
 
         private void DataPump()
         {
@@ -73,4 +87,5 @@ namespace Eyetracking.NET.Tobii
             }
         }
     }
+
 }
