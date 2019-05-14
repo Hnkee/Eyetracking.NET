@@ -2,7 +2,7 @@ Wpf samplecode:
 
 public partial class MainWindow : Window
 {
-    private readonly Eyetracker _tracker = Eyetracking.NET.Eyetracker.Desktop;
+    private readonly Eyetracker _tracker = new  Eyetracking.NET.Eyetracker();
 
     public MainWindow()
     {
@@ -17,10 +17,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        var eyetracker = Eyetracking.NET.Eyetracker.Desktop;
+        var eyetracker = new Eyetracking.NET.EyetrackerVR();
         while (!Console.KeyAvailable)
         {
-            Console.WriteLine($"{eyetracker.X} , {eyetracker.Y}");
+            Console.WriteLine($"{eyetracker.X} , {eyetracker.Y} , {eyetracker.Z}");
         }
     }
 }
