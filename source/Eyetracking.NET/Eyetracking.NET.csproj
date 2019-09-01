@@ -95,6 +95,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Tobii.StreamEngine.2.2.2.363\build\Tobii.StreamEngine.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Tobii.StreamEngine.2.2.2.363\build\Tobii.StreamEngine.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>if not exist $(SolutionDir)stage mkdir $(SolutionDir)stage
+if not exist $(SolutionDir)stage\AssemblyVersion.generated.cs echo using System.Reflection; [assembly: AssemblyVersion("0.0.1.0")] [assembly: AssemblyFileVersion("0.0.1.0")] &gt; $(SolutionDir)output\AssemblyVersion.generated.cs</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
