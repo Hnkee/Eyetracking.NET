@@ -16,6 +16,7 @@ var configuration = Argument("configuration", "Release");
 // Define directories.
 var sourceDir = Directory("./source");
 var outputDir = Directory("./stage");
+var packageDir = outputDir + Directory("package");
 var publishDir = outputDir + Directory("publish");
 var solution = File("./Eyetracking.NET.sln");
 
@@ -80,7 +81,6 @@ Task("Build").Does(() =>
     {
         ToolPath = msbuildExePath,
         Configuration = configuration,
-        PlatformTarget = PlatformTarget.x86,
     }
         .WithTarget("Rebuild");
 
@@ -102,7 +102,26 @@ Task("Test").Does(() => {
 });
 
 Task("Pack").Does(() => {
+    var libDir = packageDir + Directory("lib/net35");
+    EnsureDirectoryExists(libDir);
 
+    var nuspecFileName = "Eyetracking.NET.nuspec";
+    var eyetrackingProjectDir = sourceDir + Directory("Eyetracking.NET");
+    CopyFileToDirectory(eyetrackingProjectDir + File(nuspecFileName), packageDir);
+    CopyFiles($"{eyetrackingProjectDir + Directory("bin/" + configuration)}/*.dll" , libDir);
+
+    // A file named readme will show up after installation
+    // see: https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#creating-the-nuspec-file
+    CopyFile(eyetrackingProjectDir + File("readme-after-installation.txt"), packageDir + File("readme.txt"));
+
+    var settings = new NuGetPackSettings
+    {
+        Version = version.NuGetVersion,
+        License = new NuSpecLicense() { Type = "expression", Value = "MIT" },
+        BasePath = packageDir,
+        OutputDirectory = publishDir
+    };
+    NuGetPack(packageDir + File(nuspecFileName), settings);
 });
 
 

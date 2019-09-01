@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Misc", ".Misc", "{0F4C2956
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D8B0445F-312C-4804-9DC9-5CD4A240DF0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eyetracking.NET.Tests", "Eyetracking.NET.Tests\Eyetracking.NET.Tests.csproj", "{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eyetracking.NET.Tests", "source\Eyetracking.NET.Tests\Eyetracking.NET.Tests.csproj", "{9B2D63C3-D8CC-4619-9C2B-ABA8E78C7903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
