@@ -32,8 +32,10 @@ namespace Eyetracking.NET
         private static ApiContext _api;
         private static IEyetracker _desktop;
         private static IEyetrackerVr _vr;
-        private static IEyetracker Desktop => _desktop ?? (_desktop = new TobiiDesktopTracker(_api));
+        private static IHeadTracker _headTracker;
+        private static IEyetracker Desktop => _headTracker != null ? _headTracker.Gaze : _desktop ?? (_desktop = new TobiiDesktopTracker(_api));
         private static IEyetrackerVr VR => _vr ?? (_vr = new TobiiVrTracker(_api));
+        private static IHeadTracker HeadTracker => _headTracker ?? (_headTracker = new TobiiHeadTrackerWithGaze(_api));
 
         static TobiiEyetrackerFactory()
         {
@@ -52,6 +54,11 @@ namespace Eyetracking.NET
         public IEyetrackerVr CreateVR()
         {
             return VR;
+        }
+
+        public IHeadTracker CreateHeadTracker()
+        {
+            return HeadTracker;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading;
 using Tobii.StreamEngine;
@@ -14,8 +14,9 @@ namespace Eyetracking.NET.Tobii
         private bool _continue = true;
         private tobii_wearable_data_callback_t _wearableCallbackInstance;
         private tobii_gaze_point_callback_t _gazePointCallbackInstance;
+        private tobii_head_pose_callback_t _headPoseCallbackInstance;
 
-        internal TobiiTrackerBase(ApiContext api, bool isWearable)
+        internal TobiiTrackerBase(ApiContext api, bool isWearable, bool trackHead = false)
         {
             _device = api
                 .GetDeviceUrls()
@@ -35,11 +36,20 @@ namespace Eyetracking.NET.Tobii
                 }
                 else
                 {
-                    var result = Interop.tobii_stream_supported(_device.Handle, tobii_stream_t.TOBII_STREAM_GAZE_POINT, out var gazePointSupported);
-                    if (result == tobii_error_t.TOBII_ERROR_NO_ERROR && gazePointSupported)
+                    var resultGaze = Interop.tobii_stream_supported(_device.Handle, tobii_stream_t.TOBII_STREAM_GAZE_POINT, out var gazePointSupported);
+                    if (resultGaze == tobii_error_t.TOBII_ERROR_NO_ERROR && gazePointSupported)
                     {
                         _gazePointCallbackInstance = GazePointCallback;
-                        result = Interop.tobii_gaze_point_subscribe(_device.Handle, _gazePointCallbackInstance);
+                        resultGaze = Interop.tobii_gaze_point_subscribe(_device.Handle, _gazePointCallbackInstance);
+                    }
+                    if (trackHead)
+                    {
+                        var resultHead = Interop.tobii_stream_supported(_device.Handle, tobii_stream_t.TOBII_STREAM_HEAD_POSE, out var headPoseSupported);
+                        if (resultHead == tobii_error_t.TOBII_ERROR_NO_ERROR && headPoseSupported)
+                        {
+                            _headPoseCallbackInstance = HeadPoseCallback;
+                            resultHead = Interop.tobii_head_pose_subscribe(_device.Handle, _headPoseCallbackInstance);
+                        }
                     }
                 }
 
@@ -55,13 +65,17 @@ namespace Eyetracking.NET.Tobii
             _continue = false;
             if (_gazePointCallbackInstance != null) Interop.tobii_gaze_point_unsubscribe(_device.Handle);
             if (_wearableCallbackInstance != null) Interop.tobii_wearable_data_unsubscribe(_device.Handle);
+            if (_headPoseCallbackInstance != null) Interop.tobii_head_pose_unsubscribe(_device.Handle);
             _device.Dispose();
             _thread.Join(300);
             _gazePointCallbackInstance = null;
             _wearableCallbackInstance = null;
+            _headPoseCallbackInstance = null;
         }
 
         protected virtual void GazePointCallback(ref tobii_gaze_point_t gaze_point) { }
+
+        protected virtual void HeadPoseCallback(ref tobii_head_pose_t data) { }
 
         protected virtual void WearableCallback(ref tobii_wearable_data_t data) { }
 
@@ -73,4 +87,5 @@ namespace Eyetracking.NET.Tobii
             }
         }
     }
+
 }

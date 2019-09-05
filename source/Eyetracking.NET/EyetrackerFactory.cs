@@ -28,5 +28,10 @@ namespace Eyetracking.NET
             if (!CanCreateEyetrackerVR) throw new CannotCreateEyetrackerException();
             return Default.CreateVR();
         }
+
+        public IHeadTracker CreateHeadTracker()
+        {
+            return new TobiiEyetrackerFactory().CreateHeadTracker();
+        }
     }
 }
