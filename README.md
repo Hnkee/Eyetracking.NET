@@ -29,7 +29,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var eyetracker = Eyetracker.Desktop;
+        var eyetracker = new Eyetracker();
         while (!Console.KeyAvailable)
         {
             Console.WriteLine($"{eyetracker.X} , {eyetracker.Y}");
